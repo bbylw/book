@@ -1,0 +1,214 @@
+/* --- 视觉升级：典雅的学者书房 --- */
+
+/* --- 全局样式与字体 --- */
+:root {
+    --bg-color: #111827; /* 午夜蓝 */
+    --card-bg: #1F2937; /* 石板灰 */
+    --accent-gold: #D4AF37; /* 复古金 */
+    --text-primary: #F9FAFB; /* 米白 */
+    --text-secondary: #9CA3AF; /* 淡灰 */
+    --border-color: #374151;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Noto Serif SC', serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-rendering: optimizeLegibility;
+}
+
+/* --- 页头 --- */
+header {
+    text-align: center;
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), rgba(31, 41, 55, 0.5)), url('https://www.transparenttextures.com/patterns/dark-denim-3.png');
+    border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+header p {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    font-style: italic;
+}
+
+/* --- 书籍网格布局 --- */
+.book-grid {
+    max-width: 1400px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.category {
+    margin-bottom: 5rem;
+}
+
+.category h2 {
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+/* 分类标题装饰线 */
+.category h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: var(--accent-gold);
+    box-shadow: 0 0 15px var(--accent-gold);
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+}
+
+/* --- 书籍卡片 --- */
+.book-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                border-color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.6s forwards;
+}
+
+.book-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    border-color: var(--accent-gold);
+}
+
+/* --- 模拟书籍封面 (升级版) --- */
+.book-cover {
+    background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 240px;
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: inset 0 -10px 20px -10px rgba(0,0,0,0.5);
+}
+
+/* 模拟书脊 */
+.book-cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 15px;
+    background: linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0));
+}
+
+.cover-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+}
+
+.cover-author {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+/* --- 书籍信息 --- */
+.book-info {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-info h3 {
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.book-info .author {
+    color: var(--accent-gold);
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+
+.book-info .reason {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    flex-grow: 1;
+}
+
+/* --- 页脚 --- */
+footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    margin-top: 4rem;
+    background-color: #0c1220;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+/* --- 动画 --- */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- 响应式设计 --- */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 3rem;
+    }
+    .category h2 {
+        font-size: 2.2rem;
+    }
+    .category-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
